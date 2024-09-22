@@ -7,7 +7,7 @@ int checkData() {
 	cin >> forCheck;
 	while (cin.fail()) {
 		while (getchar() != '\n');
-		cout << "Данные введены некорректно, введите целочисленное значение" << endl;
+		cout << "Enter correct data" << endl;
 		cin.clear();
 		cin >> forCheck;
 	}
