@@ -39,7 +39,7 @@ vector <int> manualVectorFill(vector<int>& vec) {
     int number = 0;
     cout << "Enter the array:" << endl;
     for (int i = 0; i < sizeOfArray; i++) {
-        cout << i << ": " << endl;
+        cout << i + 1 << ": " << endl;
         cin >> number;
         vec.push_back(number);
     }
