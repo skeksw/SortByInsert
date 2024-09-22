@@ -13,7 +13,6 @@ vector <int> sortByInsert(vector <int> &vec) {
             }
         }  
     }
-
     return vec;
 }
 

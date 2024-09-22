@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int CheckData() {
+int checkData() {
 	int forCheck;
 	cin >> forCheck;
 	while (cin.fail()) {
