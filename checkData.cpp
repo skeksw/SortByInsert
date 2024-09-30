@@ -2,7 +2,8 @@
 
 using namespace std;
 
-int checkData() {
+// Проверка на правильность ввода данных
+int checkData() { 
 	int forCheck;
 	cin >> forCheck;
 	while (cin.fail()) {

@@ -5,6 +5,7 @@
 
 using namespace std;
 
+// Функция сортировки методом вставки
 vector <int> sortByInsert(vector <int> &vec) {
     for (int i = 1; i < vec.size(); i++) {  
         for (int k = i; k > 0; k--) {
@@ -19,7 +20,8 @@ vector <int> sortByInsert(vector <int> &vec) {
     return vec;
 }
 
-void saveInFile(vector <int> &vecBefore, vector <int> &vecAfter) {
+// Функция сохранения векторов (исходного и отсортированного) в файл
+void saveInFile(vector <int> &vecBefore, vector <int> &vecAfter) { 
     fstream file("result.txt", fstream::out);
     file << "Array before sorting:" << endl;
     for (int i = 0; i < vecBefore.size(); i++) {
@@ -31,29 +33,33 @@ void saveInFile(vector <int> &vecBefore, vector <int> &vecAfter) {
     }
 }
 
-vector <int> equalingVectors(vector <int>& vecBefore, vector <int>& vecAfter) {
+// Функция приравнивания одного вектора к другому
+vector <int> equalingVectors(vector <int>& vecBefore, vector <int>& vecAfter) { 
     for (int i = 0; i < vecBefore.size(); i++) {
         vecAfter.push_back(vecBefore[i]);
     }
     return vecAfter;
 }
 
-
-void printVector(vector <int>& vec) {
+// Функция вывода вектора на экран
+void printVector(vector <int>& vec) { 
 	for (int i = 0; i < vec.size(); i++) {
         cout << vec[i] << '\t';
 	}
     cout << endl;
 }
 
-vector <int> randomVectorFill(vector<int> &vec) {
+// Функция случайного заполнения вектора
+vector <int> randomVectorFill(vector<int> &vec) { 
     for (int i = 0; i < rand() % 15; i++) {
         vec.push_back(rand() % 100 - 50);
         
     }
     return vec;
 }
-vector <int> manualVectorFill(vector<int>& vec) {
+
+// Функция ручного заполнения вектора
+vector <int> manualVectorFill(vector<int>& vec) { 
     cout << "Enter the number of size array:" << endl;
     int sizeOfArray = checkData();
     int number = 0;
@@ -81,7 +87,6 @@ int main() {
             equalingVectors(vecBefore, vecAfter);
             sortByInsert(vecAfter);
             printVector(vecAfter);
-            cout << "Do you want to save result in file? \n0-No, another number - Yes\n";
             if (menuYesOrNo()) {
                 saveInFile(vecBefore, vecAfter);
                 cout << "Data saved" << endl;
@@ -95,7 +100,6 @@ int main() {
             equalingVectors(vecBefore, vecAfter);
             sortByInsert(vecAfter);
             printVector(vecAfter);
-            cout << "Do you want to save result in file? \n0-No, another number - Yes\n";
             if (menuYesOrNo()) {
                 saveInFile(vecBefore, vecAfter);
                 cout << "Data saved" << endl;
