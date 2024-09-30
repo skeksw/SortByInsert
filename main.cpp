@@ -1,6 +1,7 @@
 #include "menu.h"
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
@@ -16,6 +17,25 @@ vector <int> sortByInsert(vector <int> &vec) {
         }  
     }
     return vec;
+}
+
+void saveInFile(vector <int> &vecBefore, vector <int> &vecAfter) {
+    fstream file("result.txt", fstream::out);
+    file << "Array before sorting:" << endl;
+    for (int i = 0; i < vecBefore.size(); i++) {
+        file << vecBefore[i] << '\t';
+    }
+    file << endl << "Array after sorting:" << endl;
+    for (int i = 0; i < vecAfter.size(); i++) {
+        file << vecAfter[i] << '\t';
+    }
+}
+
+vector <int> equalingVectors(vector <int>& vecBefore, vector <int>& vecAfter) {
+    for (int i = 0; i < vecBefore.size(); i++) {
+        vecAfter.push_back(vecBefore[i]);
+    }
+    return vecAfter;
 }
 
 
@@ -48,25 +68,40 @@ vector <int> manualVectorFill(vector<int>& vec) {
 
 int main() {
     menuEnum choice = menu();
-    vector <int> vec;
+    vector <int> vecBefore;
+    vector <int> vecAfter;
     while (choice != menuEnum::exitEnum) {
         switch (choice)
         {
         case randomFill:
-            randomVectorFill(vec);
+            randomVectorFill(vecBefore);
             cout << "Not sorted array:" << endl;
-            printVector(vec);
+            printVector(vecBefore);
             cout << "Sorted array (insert):" << endl;
-            sortByInsert(vec);
-            printVector(vec);
-            vec.clear();
+            equalingVectors(vecBefore, vecAfter);
+            sortByInsert(vecAfter);
+            printVector(vecAfter);
+            cout << "Do you want to save result in file? \n0-No, another number - Yes\n";
+            if (menuYesOrNo()) {
+                saveInFile(vecBefore, vecAfter);
+                cout << "Data saved" << endl;
+            }
+            vecAfter.clear();
+            vecBefore.clear();
             break;
         case manual:
-            manualVectorFill(vec);  
+            manualVectorFill(vecBefore);
             cout << "Sorted array (insert):" << endl;
-            sortByInsert(vec);
-            printVector(vec);
-            vec.clear();
+            equalingVectors(vecBefore, vecAfter);
+            sortByInsert(vecAfter);
+            printVector(vecAfter);
+            cout << "Do you want to save result in file? \n0-No, another number - Yes\n";
+            if (menuYesOrNo()) {
+                saveInFile(vecBefore, vecAfter);
+                cout << "Data saved" << endl;
+            }
+            vecAfter.clear();
+            vecBefore.clear();
             break;
         default:
             cout << "Press from 1 to 3" << endl;

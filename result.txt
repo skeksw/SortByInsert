@@ -1,0 +1,4 @@
+Array before sorting:
+17	-50	-26	
+Array after sorting:
+-50	-26	17	
